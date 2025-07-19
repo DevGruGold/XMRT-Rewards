@@ -1,0 +1,19 @@
+
+name: Deploy Smart Contract
+
+on:
+  push:
+    paths:
+      - 'xmrt.sol'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          npm install -g solc
+      - name: Compile Contract
+        run: |
+          solc --optimize --bin xmrt.sol
